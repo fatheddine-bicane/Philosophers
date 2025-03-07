@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 21:34:06 by fbicane           #+#    #+#             */
-/*   Updated: 2025/03/06 21:42:35 by fbicane          ###   ########.fr       */
+/*   Created: 2025/03/07 20:15:17 by fbicane           #+#    #+#             */
+/*   Updated: 2025/03/07 20:16:05 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	ft_perror(const char *err_mssg)
 {
-	pthread_t	tread1;
-	if (argc == 5 || argc == 6)
-	{
+	int	i;
 
-	}
-	else
+	i = -1;
+	while (err_mssg[++i])
+		write(2, &err_mssg[i], 1);
+}
+
+void	ft_throw_error_1(int error)
+{
+	if (error == 1)
 	{
-		ft_throw_error_1(1);
-		return(0);
+		ft_perror("error: invalid number of arguments\n");
 	}
 }
