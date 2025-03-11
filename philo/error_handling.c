@@ -27,4 +27,8 @@ void	ft_throw_error_1(int error)
 	{
 		ft_perror("error: invalid number of arguments\n");
 	}
+	else if (error == 2)
+	{
+		ft_perror("error: invalid argumment");
+	}
 }

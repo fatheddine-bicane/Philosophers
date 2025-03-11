@@ -20,6 +20,12 @@
 # include <pthread.h> //mutex, thread
 # include <sys/time.h> //gettimeofday
 
+typedef struct s_timeval
+{
+	time_t		tv_sec;
+	suseconds_t	tv_usec;
+}	timeval_t;
+
 /*typedef struct philo_s*/
 /*{*/
 /**/
