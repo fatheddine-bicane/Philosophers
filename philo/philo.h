@@ -15,22 +15,30 @@
 
 # include <unistd.h> //usleep
 # include <stdio.h>
+# include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
 # include <pthread.h> //mutex, thread
 # include <sys/time.h> //gettimeofday
 
-typedef struct s_timeval
+typedef struct args_s
 {
-	time_t		tv_sec;
-	suseconds_t	tv_usec;
-}	timeval_t;
+	unsigned int		number_of_philos;
+	unsigned long	time_to_die;
+	unsigned long	time_to_eat;
+	unsigned long	time_to_sleep;
+	unsigned long	meals_must_eat;
+	bool	optional_argumen;
+}	args_t;
 
 /*typedef struct philo_s*/
 /*{*/
 /**/
 /*}*/
 
-void	ft_throw_error_1(int error);
+void	ft_throw_error_1(int error, args_t *args);
+
+bool	ft_syntax_error(char *argv);
+unsigned long	ft_atol(const char *str);
 
 #endif

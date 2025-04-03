@@ -21,14 +21,10 @@ void	ft_perror(const char *err_mssg)
 		write(2, &err_mssg[i], 1);
 }
 
-void	ft_throw_error_1(int error)
+void	ft_throw_error_1(int error, args_t *args)
 {
 	if (error == 1)
 	{
 		ft_perror("error: invalid number of arguments\n");
-	}
-	else if (error == 2)
-	{
-		ft_perror("error: invalid argumment");
 	}
 }

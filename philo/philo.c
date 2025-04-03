@@ -12,32 +12,28 @@
 
 #include "philo.h"
 
-void	ft_check_args(char **argv)
+void	ft_check_args(int argc, char **argv)
 {
-	int	a;
-	int	i;
+	args_t	*args;
+	int	i = 1;
 
-	a = 2;
-	while (argv[a])
+	args = malloc(sizeof(args_t));
+	if (!args)
+		return; //malloc protection
+	while (i < 4)
 	{
-		i = 0;
-		while (argv[a][i])
-		{
-			if (!(argv[a][i] >= '0' && argv[a][i] <= '9'))
-			{
-				ft_throw_error_1(2);
-			}
-			i++;
-		}
-		a++;
+		if (ft_syntax_error(argv[i]))
+			ft_throw_error_1(1, args);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	/*if (argc == 6 || argc == 7)*/
+	printf("%lu", ULONG_MAX);
+	/*pthread_t	tread1;*/
+	/*if (argc == 5 || argc == 6)*/
 	/*{*/
-	/*	ft_check_args(argv);*/
+	/**/
 	/*}*/
 	/*else*/
 	/*{*/
