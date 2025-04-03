@@ -12,10 +12,10 @@
 
 #include "philo.h"
 
-unsigned long	ft_atol(const char *str)
+unsigned int	ft_atol(const char *str)
 {
 	int				i;
-	unsigned long	res;
+	long	res;
 
 	i = 0;
 	res = 0;
@@ -26,8 +26,8 @@ unsigned long	ft_atol(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + str[i] - 48;
-		/*if ((res * sign) > INT_MAX || (res * sign) < INT_MIN)*/
-		/*	break ;*/
+		if (res > UINT_MAX)
+			break ;
 		i++;
 	}
 	return (res);
@@ -36,9 +36,13 @@ unsigned long	ft_atol(const char *str)
 bool	ft_syntax_error(char *argv)
 {
 	if (!(*argv == '+' || (*argv >= '0' && *argv <= '9')))
+	{
 		return (true);
+	}
 	if ((argv[0] == '+') && !(argv[1] >= '0' && argv[1] <= '9'))
+	{
 		return (true);
+	}
 	while (*++argv)
 	{
 		if (!(*argv >= '0' && *argv <= '9'))

@@ -12,32 +12,75 @@
 
 #include "philo.h"
 
-void	ft_check_args(int argc, char **argv)
+void	ft_init_args(t_args **args, char **argv)
 {
-	args_t	*args;
-	int	i = 1;
+	(*args)->number_of_philos = ft_atol(argv[1]);
+	if ((*args)->number_of_philos > UINT_MAX)
+		ft_throw_error_1(3, *args);
+	(*args)->time_to_die = ft_atol(argv[2]);
+	if ((*args)->time_to_die > UINT_MAX)
+		ft_throw_error_1(3, *args);
+	(*args)->time_to_eat = ft_atol(argv[3]);
+	if ((*args)->time_to_eat > UINT_MAX)
+		ft_throw_error_1(3, *args);
+	(*args)->time_to_sleep = ft_atol(argv[4]);
+	if ((*args)->time_to_sleep > UINT_MAX)
+		ft_throw_error_1(3, *args);
+	if ((*args)->optional_argumen)
+	{
+		(*args)->meals_must_eat = ft_atol(argv[5]);
+		if ((*args)->meals_must_eat > UINT_MAX)
+			ft_throw_error_1(3, *args);
+	}
+}
 
-	args = malloc(sizeof(args_t));
+void	ft_check_args(int argc, char **argv, t_args *args)
+{
+	int	i = 1;
+	int	j = 5;
+
+	args = malloc(sizeof(t_args));
 	if (!args)
-		return; //malloc protection
-	while (i < 4)
+		return ;
+	if (5 == argc)
+		args->optional_argumen = false;
+	else if (6 == argc)
+		args->optional_argumen = true;
+	if (6 == argc)
+		j++;
+	while (i < j)
 	{
 		if (ft_syntax_error(argv[i]))
-			ft_throw_error_1(1, args);
+			ft_throw_error_1(2, args);
+		i++;
 	}
+	ft_init_args(&args, argv);
 }
 
 int	main(int argc, char **argv)
 {
-	printf("%lu", ULONG_MAX);
+	t_args args;
 	/*pthread_t	tread1;*/
-	/*if (argc == 5 || argc == 6)*/
-	/*{*/
-	/**/
-	/*}*/
-	/*else*/
-	/*{*/
-	/*	ft_throw_error_1(1);*/
-	/*	return(0);*/
-	/*}*/
+	if (argc == 5 || argc == 6)
+	{
+		ft_check_args(argc, argv, &args);
+		printf("Structure contents:\n"
+		 "- number_of_philos: %u\n"
+		 "- time_to_die: %u\n"
+		 "- time_to_eat: %u\n"
+		 "- time_to_sleep: %u\n"
+		 "- meals_must_eat: %u\n"
+		 "- optional_argumen: %s\n",
+		 args.number_of_philos,
+		 args.time_to_die,
+		 args.time_to_eat,
+		 args.time_to_sleep,
+		 args.meals_must_eat,
+		 args.optional_argumen ? "true" : "false");
+	}
+	else
+	{
+		ft_throw_error_1(1, NULL);
+		return(0);
+	}
 }

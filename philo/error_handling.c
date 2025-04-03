@@ -21,10 +21,22 @@ void	ft_perror(const char *err_mssg)
 		write(2, &err_mssg[i], 1);
 }
 
-void	ft_throw_error_1(int error, args_t *args)
+void	ft_throw_error_1(int error, t_args *args)
 {
 	if (error == 1)
 	{
-		ft_perror("error: invalid number of arguments\n");
+		ft_perror("Error: invalid number of arguments\n");
+	}
+	else if (error == 2)
+	{
+		ft_perror("Error: the arguments cannot contain");
+		ft_perror("non numerical characters\n");
+		free(args);
+	}
+	else if (error == 3)
+	{
+		ft_perror("Error: an argument contain a number that is too large and");
+		ft_perror("cannot be processed. Please enter a smaller number\n");
+		free(args);
 	}
 }

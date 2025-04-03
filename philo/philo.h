@@ -21,24 +21,24 @@
 # include <pthread.h> //mutex, thread
 # include <sys/time.h> //gettimeofday
 
-typedef struct args_s
+typedef struct s_args
 {
-	unsigned int		number_of_philos;
-	unsigned long	time_to_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
-	unsigned long	meals_must_eat;
+	unsigned int	number_of_philos;
+	unsigned int	time_to_die;
+	unsigned int	time_to_eat;
+	unsigned int	time_to_sleep;
+	unsigned int	meals_must_eat;
 	bool	optional_argumen;
-}	args_t;
+}	t_args;
 
-/*typedef struct philo_s*/
+/*typedef struct s_philo*/
 /*{*/
 /**/
 /*}*/
 
-void	ft_throw_error_1(int error, args_t *args);
+void			ft_throw_error_1(int error, t_args *args);
 
-bool	ft_syntax_error(char *argv);
-unsigned long	ft_atol(const char *str);
+bool			ft_syntax_error(char *argv);
+unsigned int	ft_atol(const char *str);
 
 #endif
