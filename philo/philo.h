@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdbool.h>
+# include <string.h>
 # include <pthread.h> //mutex, thread
 # include <sys/time.h> //gettimeofday
 

@@ -34,33 +34,31 @@ void	ft_init_args(t_args **args, char **argv)
 	}
 }
 
-void	ft_check_args(int argc, char **argv, t_args *args)
+void	ft_check_args(int argc, char **argv, t_args **args)
 {
 	int	i = 1;
 	int	j = 5;
 
-	args = malloc(sizeof(t_args));
-	if (!args)
-		return ;
 	if (5 == argc)
-		args->optional_argumen = false;
+		(*args)->optional_argumen = false;
 	else if (6 == argc)
-		args->optional_argumen = true;
+		(*args)->optional_argumen = true;
 	if (6 == argc)
 		j++;
 	while (i < j)
 	{
 		if (ft_syntax_error(argv[i]))
-			ft_throw_error_1(2, args);
+			ft_throw_error_1(2, *args);
 		i++;
 	}
-	ft_init_args(&args, argv);
+	ft_init_args(args, argv);
 }
 
 int	main(int argc, char **argv)
 {
-	t_args args;
+	t_args *args;
 	/*pthread_t	tread1;*/
+	args = malloc(sizeof(t_args));
 	if (argc == 5 || argc == 6)
 	{
 		ft_check_args(argc, argv, &args);
@@ -71,12 +69,12 @@ int	main(int argc, char **argv)
 		 "- time_to_sleep: %u\n"
 		 "- meals_must_eat: %u\n"
 		 "- optional_argumen: %s\n",
-		 args.number_of_philos,
-		 args.time_to_die,
-		 args.time_to_eat,
-		 args.time_to_sleep,
-		 args.meals_must_eat,
-		 args.optional_argumen ? "true" : "false");
+		 args->number_of_philos,
+		 args->time_to_die,
+		 args->time_to_eat,
+		 args->time_to_sleep,
+		 args->meals_must_eat,
+		 args->optional_argumen ? "true" : "false");
 	}
 	else
 	{
