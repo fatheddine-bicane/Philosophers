@@ -22,7 +22,7 @@ static inline bool	is_digit(char c)
 	return ((c >= '0' && c <= '9'));
 }
 
-int	ft_atol(char *arg)
+long	ft_atol(char *arg)
 {
 	int		i;
 	long	res;
@@ -47,6 +47,6 @@ int	ft_atol(char *arg)
 	}
 	if (arg[i])
 		return (parce_error_1(2), -1);
-	return ((res));
+	return ((int)res);
 }
 

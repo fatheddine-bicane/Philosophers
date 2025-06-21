@@ -15,7 +15,7 @@ RED = \033[0;31m
 RESET = \033[0m
 
 
-SRCS = ./main.c ./utils/error/throw_error.c ./utils/parce/parce.c
+SRCS = ./main.c ./utils/error/throw_error.c ./utils/parce/parce.c ./utils/parce/parce_utils.c
 
 BONUS = 
 

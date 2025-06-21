@@ -92,5 +92,5 @@ void	parce_error_1(int error_mssg);
 
 // INFO: parcing functions
 bool	parce_args(int argc, char **argv, t_table *table);
-int	ft_atol(char *arg);
+long	ft_atol(char *arg);
 #endif
