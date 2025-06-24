@@ -20,13 +20,11 @@ void	*dinner_routine(void *ptr)
 	return (NULL);
 }
 
-bool	dinner_simulation(t_table *table)
+bool	create_philos(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	/*if (1 == table->limit_meals)*/
-		// edge case maybe
 	while (i < table->philo_nbr)
 	{
 		if (0 != pthread_create(&table->philos[i].thread,
@@ -34,5 +32,21 @@ bool	dinner_simulation(t_table *table)
 				return (dinner_error_1(1), false);
 		i++;
 	}
+	return (true);
+}
+
+bool	dinner_simulation(t_table *table)
+{
+	/*if (1 == table->limit_meals)*/
+		// edge case maybe
+
+
+
+
+	if (false == create_philos(table))
+		return (false);
+
+
+
 	return (true);
 }
