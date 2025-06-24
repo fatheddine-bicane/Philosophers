@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:10:27 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/21 20:58:43 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:12:43 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,13 @@ void	init_error_1(int error_mssg)
 	if (1 == error_mssg)
 	{
 		printf(RED"Error: pthread_mutex_init failed.\n"RESET);
+	}
+}
+
+void	dinner_error_1(int	error_mssg)
+{
+	if (1 == error_mssg)
+	{
+		printf(RED"Error: pthread_create failed.\n"RESET);
 	}
 }
