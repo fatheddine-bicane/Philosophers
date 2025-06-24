@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 20:45:35 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/24 15:26:46 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:11:02 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ static void	philos_init(t_table *table)
 bool	data_init(t_table *table)
 {
 	table->end_dinner = false;
+	table->all_philos_ready = false;
+	if (0 != pthread_mutex_init(&table->table_mutex, NULL))
+		return (init_error_1(1), false);
 	table->philos = malloc(sizeof(t_philosopher) * table->philo_nbr);
 	if (NULL == table->philos)
 		return (false); // TODO: error mssg

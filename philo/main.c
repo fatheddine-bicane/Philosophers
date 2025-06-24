@@ -20,6 +20,8 @@ int	main(int argc, char **argv)
 	{
 		if (false == parce_args(argc, argv, &table))
 			return (1);
+		if (false == data_init(&table))
+			return (1);
 		/*printf("%ld\n", table.philo_nbr);*/
 		/*printf("%ld\n", table.time_to_die);*/
 		/*printf("%ld\n", table.time_to_eat);*/

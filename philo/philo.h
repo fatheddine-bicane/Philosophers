@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:58 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/24 15:26:34 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:12:59 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ struct s_table
 	long			limit_meals; // [5] optional argument
 	long			start_dinner; // maybe at what time to start dinner
 	bool			end_dinner; // when a philosopher dies or all of them are full
+	bool			all_philos_ready; // to synchronize (all philos (threads) start at the same time)
+	t_mutex			table_mutex; // avoid data race while reading frome table
 	t_fork			*forks; //array of forks
 	t_philosopher	*philos; // array of philosophers
 };
@@ -92,11 +94,13 @@ struct s_table
 // INFO: error_printers
 void	parce_error_1(int error_mssg);
 void	init_error_1(int error_mssg);
+void	dinner_error_1(int	error_mssg);
 
 // INFO: parcing functions
 bool	parce_args(int argc, char **argv, t_table *table);
 long	ft_atol(char *arg);
+
+// INFO: initializing functions
+bool	data_init(t_table *table);
+
 #endif
-	bool			all_philos_ready; // to synchronize (all philos (threads) start at the same time)
-	t_mutex			table_mutex; // avoid data race while reading frome table
-void	dinner_error_1(int	error_mssg);
