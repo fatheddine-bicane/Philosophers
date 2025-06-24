@@ -6,11 +6,17 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:55 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/21 17:09:44 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/24 17:53:50 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
+
+/*-------------------------------------------------------------------------*/
+// INFO: if a function returns false in case of failure,
+// a chain of false return will start, reaching main and
+// returning 1 as error (malloc failed, one of pthread function faild, ...)
+/*-------------------------------------------------------------------------*/
 
 int	main(int argc, char **argv)
 {
