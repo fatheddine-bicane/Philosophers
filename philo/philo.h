@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:58 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/21 18:36:18 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/24 15:26:34 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_table	t_table;
 typedef struct s_fork
 {
 	int		fork_id;
-	t_mutex	mutex;
+	t_mutex	fork;
 }	t_fork;
 
 
@@ -61,10 +61,12 @@ typedef struct s_fork
 typedef struct s_philosopher
 {
 	int			id;
-	t_fork		right_fork;
-	t_fork		left_fork;
+	t_fork		*first_fork;
+	t_fork		*second_fork;
 	bool		full; // the optional argument
 	bool		died;
+	int			meals_counter;
+	t_table		*table; // pointer to the table (access data)
 	pthread_t	thread; // the philosopher (thread)
 
 }	t_philosopher;
@@ -82,13 +84,14 @@ struct s_table
 	long			start_dinner; // maybe at what time to start dinner
 	bool			end_dinner; // when a philosopher dies or all of them are full
 	t_fork			*forks; //array of forks
-	t_philosopher	philos; // array of philosophers
+	t_philosopher	*philos; // array of philosophers
 };
 
 // INFO: functions
 /*-----------------------------------------------*/
 // INFO: error_printers
 void	parce_error_1(int error_mssg);
+void	init_error_1(int error_mssg);
 
 // INFO: parcing functions
 bool	parce_args(int argc, char **argv, t_table *table);

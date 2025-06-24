@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:10:27 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/21 18:52:32 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/21 20:58:43 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ void	parce_error_1(int error_mssg)
 	else if (6 == error_mssg)
 	{
 		printf(RED"Error: Philosophers must eat at least once. Number of meals cannot be 0.\n"RESET);
+	}
+}
+
+void	init_error_1(int error_mssg)
+{
+	if (1 == error_mssg)
+	{
+		printf(RED"Error: pthread_mutex_init failed.\n"RESET);
 	}
 }
