@@ -97,3 +97,6 @@ void	init_error_1(int error_mssg);
 bool	parce_args(int argc, char **argv, t_table *table);
 long	ft_atol(char *arg);
 #endif
+	bool			all_philos_ready; // to synchronize (all philos (threads) start at the same time)
+	t_mutex			table_mutex; // avoid data race while reading frome table
+void	dinner_error_1(int	error_mssg);
