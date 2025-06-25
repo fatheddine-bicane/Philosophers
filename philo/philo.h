@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:58 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/25 14:23:05 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/25 15:27:06 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ typedef struct s_table	t_table;
 # ifndef RESET
 #  define RESET "\001\033[0m\002"
 # endif
+
+typedef enum s_philo_stat
+{
+	TAKEN_A_FORK,
+	EATING,
+	SLEEPING,
+	THINKING,
+	DIED,
+}	t_philo_stat;
 
 // INFO: fork struct
 /*-----------------------------------------------*/
@@ -119,6 +128,9 @@ void	wait_philos(t_table *table);
 // INFO: time functions
 long	gettime(void);
 void	ft_sleep(long milliseconds);
+
+// INFO: print status function
+bool	print_status(t_philo_stat stat, t_philosopher *philo);
 
 /*-----------------------------------------------*/
 
