@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:46:16 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/24 18:49:53 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/25 10:08:23 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,9 @@ long	read_long(t_mutex *mutex, long value)
 	result = value;
 	pthread_mutex_unlock(mutex);
 	return (result);
+}
+
+bool	end_dinner(t_table *table)
+{
+	return (read_bool(&table->table_mutex, table->end_dinner));
 }
