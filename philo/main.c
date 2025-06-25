@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:55 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/24 17:53:50 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/25 11:25:21 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	main(int argc, char **argv)
 	if (5 == argc || 6 == argc)
 	{
 		if (false == parce_args(argc, argv, &table))
-			return (1);
+			return (EXIT_FAILURE);
 		if (false == data_init(&table))
-			return (1);
+			return (EXIT_FAILURE);
 		/*printf("%ld\n", table.philo_nbr);*/
 		/*printf("%ld\n", table.time_to_die);*/
 		/*printf("%ld\n", table.time_to_eat);*/

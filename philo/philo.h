@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:58 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/24 18:33:57 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/25 14:23:05 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@ struct s_table
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			limit_meals; // [5] optional argument
-	long			start_dinner; // maybe at what time to start dinner
+	long			start_dinner; // at what time the dinner started
 	bool			end_dinner; // when a philosopher dies or all of them are full
 	bool			all_philos_ready; // to synchronize (all philos (threads) start at the same time)
 	t_mutex			table_mutex; // avoid data race while reading frome table
+	t_mutex			write_mutex; // avoid data_race while writing the status
 	t_fork			*forks; //array of forks
 	t_philosopher	*philos; // array of philosophers
 };
@@ -95,6 +96,7 @@ struct s_table
 void	parce_error_1(int error_mssg);
 void	init_error_1(int error_mssg);
 void	dinner_error_1(int	error_mssg);
+void	time_error_1(int error_mssg);
 
 // INFO: parcing functions
 bool	parce_args(int argc, char **argv, t_table *table);
@@ -108,7 +110,16 @@ bool	change_bool(t_mutex *mutex, bool *to_change, bool value);
 bool	change_long(t_mutex *mutex, long *to_change, long value);
 bool	read_bool(t_mutex *mutex, bool value);
 long	read_long(t_mutex *mutex, long value);
+
+bool	end_dinner(t_table *table);
+
+// INFO: synchronisation functions
+void	wait_philos(t_table *table);
+
+// INFO: time functions
+long	gettime(void);
+void	ft_sleep(long milliseconds);
+
 /*-----------------------------------------------*/
 
 #endif
-	t_mutex			write_mutex; // avoid data_race while writing the status

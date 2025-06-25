@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:55:23 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/24 17:13:21 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/25 14:14:58 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ void	*dinner_routine(void *ptr)
 	t_philosopher	*philo;
 
 	philo = (t_philosopher *)ptr;
+
+	// wait until all philos are created
+	wait_philos(philo->table);
+
+	// the routine start, stops if the flag setted to false
+	while (false == end_dinner(philo->table))
+	{
+		
+	}
+
+
 	return (NULL);
 }
 
@@ -35,17 +46,38 @@ bool	create_philos(t_table *table)
 	return (true);
 }
 
+bool	join_philos(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (i < table->philo_nbr)
+	{
+		if (0 != pthread_join(table->philos[i].thread, NULL))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 bool	dinner_simulation(t_table *table)
 {
-	/*if (1 == table->limit_meals)*/
-		// edge case maybe
-
-
-
+	if (1 == table->limit_meals)
+	{
+		// TODO: edge case one philo will starve to death
+	}
 
 	if (false == create_philos(table))
 		return (false);
 
+	table->start_dinner = gettime();
+	if (-1 == table->start_dinner)
+		return (false);
+
+	change_bool(&table->table_mutex, &table->all_philos_ready, true);
+
+	join_philos(table);
+	// if we reach this line all philosophers are full
 
 
 	return (true);
