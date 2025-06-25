@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 			return (EXIT_FAILURE);
 		if (false == data_init(&table))
 			return (EXIT_FAILURE);
+		if (false == dinner_simulation(&table))
+			return (EXIT_FAILURE);
 		/*printf("%ld\n", table.philo_nbr);*/
 		/*printf("%ld\n", table.time_to_die);*/
 		/*printf("%ld\n", table.time_to_eat);*/
