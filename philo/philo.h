@@ -111,3 +111,4 @@ long	read_long(t_mutex *mutex, long value);
 /*-----------------------------------------------*/
 
 #endif
+	t_mutex			write_mutex; // avoid data_race while writing the status
