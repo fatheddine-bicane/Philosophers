@@ -135,3 +135,4 @@ bool	print_status(t_philo_stat stat, t_philosopher *philo);
 /*-----------------------------------------------*/
 
 #endif
+	t_mutex		philo_mutex; // avoid data race with the monitor

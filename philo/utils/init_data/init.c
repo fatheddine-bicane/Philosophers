@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 20:45:35 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/25 12:39:25 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:57:28 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	asign_forks(t_philosopher *philo, t_fork *forks, int i)
 	}
 }
 
-static void	philos_init(t_table *table)
+static bool	philos_init(t_table *table)
 {
 	int	i;
 	t_philosopher	*philo;
@@ -54,8 +54,11 @@ static void	philos_init(t_table *table)
 		philo->full = false;
 		philo->id = i + 1;
 		philo->meals_counter = 0;
+		if (0 != pthread_mutex_init(&table->table_mutex, NULL))
+			return (init_error_1(1), false);
 		asign_forks(philo, table->forks, i);
 	}
+	return (true);
 }
 
 bool	data_init(t_table *table)
@@ -63,8 +66,8 @@ bool	data_init(t_table *table)
 	table->end_dinner = false;
 	table->all_philos_ready = false;
 	if (0 != pthread_mutex_init(&table->table_mutex, NULL))
-	if (0 != pthread_mutex_init(&table->write_mutex, NULL))
 		return (init_error_1(1), false);
+	if (0 != pthread_mutex_init(&table->write_mutex, NULL))
 		return (init_error_1(1), false);
 	table->philos = malloc(sizeof(t_philosopher) * table->philo_nbr);
 	if (NULL == table->philos)
@@ -74,6 +77,7 @@ bool	data_init(t_table *table)
 		return (false); // TODO: error mssg
 	if (false == fork_init(table))
 		return (false);
-	philos_init(table);
+	if (false == philos_init(table))
+		return (false);
 	return (true);
 }
