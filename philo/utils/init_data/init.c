@@ -54,9 +54,10 @@ static bool	philos_init(t_table *table)
 		philo->full = false;
 		philo->id = i + 1;
 		philo->meals_counter = 0;
-		if (0 != pthread_mutex_init(&table->table_mutex, NULL))
-			return (init_error_1(1), false);
+		philo->last_meal_time = 0;
+		philo->table = table;
 		asign_forks(philo, table->forks, i);
+		i++;
 	}
 	return (true);
 }
