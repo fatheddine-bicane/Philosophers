@@ -35,28 +35,28 @@ bool	change_long(t_mutex *mutex, long *to_change, long value)
 }
 
 // INFO: read boolean value and avoid data race
-bool	read_bool(t_mutex *mutex, bool value)
+bool	read_bool(t_mutex *mutex, bool *value)
 {
 	bool	result;
 
 	pthread_mutex_lock(mutex);
-	result = value;
+	result = *value;
 	pthread_mutex_unlock(mutex);
 	return (result);
 }
 
 // INFO: read the value and avoid data race
-long	read_long(t_mutex *mutex, long value)
+long	read_long(t_mutex *mutex, long *value)
 {
 	long	result;
 
 	pthread_mutex_lock(mutex);
-	result = value;
+	result = *value;
 	pthread_mutex_unlock(mutex);
 	return (result);
 }
 
 bool	end_dinner(t_table *table)
 {
-	return (read_bool(&table->table_mutex, table->end_dinner));
+	return (read_bool(&table->table_mutex, &table->end_dinner));
 }

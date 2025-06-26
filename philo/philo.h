@@ -75,6 +75,7 @@ typedef struct s_philosopher
 	bool		full; // the optional argument
 	bool		died;
 	int			meals_counter;
+	long		last_meal_time;
 	t_mutex		philo_mutex; // avoid data race with the monitor
 	t_table		*table; // pointer to the table (access data)
 	pthread_t	thread; // the philosopher (thread)
@@ -118,8 +119,8 @@ bool	data_init(t_table *table);
 // INFO: data_race safe read and change functions
 bool	change_bool(t_mutex *mutex, bool *to_change, bool value);
 bool	change_long(t_mutex *mutex, long *to_change, long value);
-bool	read_bool(t_mutex *mutex, bool value);
-long	read_long(t_mutex *mutex, long value);
+bool	read_bool(t_mutex *mutex, bool *value);
+long	read_long(t_mutex *mutex, long *value);
 
 bool	end_dinner(t_table *table);
 
@@ -133,8 +134,9 @@ void	ft_sleep(long milliseconds);
 // INFO: print status function
 bool	print_status(t_philo_stat stat, t_philosopher *philo);
 
-// INFO: routine function
+// INFO: dinner simulation function
 void	*dinner_routine(void *ptr);
+bool	dinner_simulation(t_table *table);
 /*-----------------------------------------------*/
 
 #endif

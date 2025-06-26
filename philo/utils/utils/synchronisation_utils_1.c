@@ -14,6 +14,6 @@
 
 void	wait_philos(t_table *table)
 {
-	while (false == read_bool(&table->table_mutex, table->all_philos_ready))
+	while (false == read_bool(&table->table_mutex, &table->all_philos_ready))
 		;
 }
