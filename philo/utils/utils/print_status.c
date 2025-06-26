@@ -21,6 +21,10 @@ bool	print_status(t_philo_stat stat, t_philosopher *philo)
 		return (true);
 	if (0 != pthread_mutex_lock(&philo->table->write_mutex))
 		return (false);
+
+	// WARNING: data_race potencial
+	curent_time = gettime() - philo->table->start_dinner;
+
 	if (TAKEN_A_FORK == stat && false == end_dinner(philo->table))
 		printf(YELLOW"%-6ld"RESET BLUE" %d"RESET " has taken a fork\n", curent_time, philo->id);
 	else if (EATING == stat && false == end_dinner(philo->table))
