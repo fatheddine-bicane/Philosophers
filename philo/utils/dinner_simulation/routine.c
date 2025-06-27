@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 20:52:39 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 18:02:00 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 18:38:01 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	eating(t_philosopher *philo)
 {
 	// take forks
-	pthread_mutex_lock(&philo->first_fork->fork);
+	pthread_mutex_lock(philo->first_fork);
 	print_status(TAKEN_A_FORK, philo);
-	pthread_mutex_lock(&philo->second_fork->fork);
+	pthread_mutex_lock(philo->second_fork);
 	print_status(TAKEN_A_FORK, philo);
 	// eat
 	change_long(&philo->philo_mutex, &philo->last_meal_time, gettime());
@@ -32,8 +32,8 @@ static void	eating(t_philosopher *philo)
 		&& philo->meals_counter == philo->table->limit_meals)
 		change_bool(&philo->philo_mutex, &philo->full, true);
 	// put forks on table
-	pthread_mutex_unlock(&philo->first_fork->fork);
-	pthread_mutex_unlock(&philo->second_fork->fork);
+	pthread_mutex_unlock(philo->first_fork);
+	pthread_mutex_unlock(philo->second_fork);
 }
 
 void	*philo_routine(void *ptr)

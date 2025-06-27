@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:58 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 10:01:36 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 18:35:25 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,13 @@ typedef enum s_philo_stat
 	DIED,
 }	t_philo_stat;
 
-// INFO: fork struct
-/*-----------------------------------------------*/
-typedef struct s_fork
-{
-	int		fork_id;
-	t_mutex	fork;
-}	t_fork;
-
-
 // INFO: philosopher struct
 /*-----------------------------------------------*/
 typedef struct s_philosopher
 {
 	int			id;
-	t_fork		*first_fork;
-	t_fork		*second_fork;
+	t_mutex		*first_fork;
+	t_mutex		*second_fork;
 	bool		full; // the optional argument
 	bool		died;
 	int			meals_counter;
@@ -99,7 +90,7 @@ struct s_table
 	t_mutex			write_mutex; // avoid data_race while writing the status
 	long			nbr_of_philos_dining; // number of philos that stated dining
 	pthread_t		butler; // this will check for dead philos
-	t_fork			*forks; //array of forks
+	t_mutex			*forks; //array of forks
 	t_philosopher	*philos; // array of philosophers
 };
 
