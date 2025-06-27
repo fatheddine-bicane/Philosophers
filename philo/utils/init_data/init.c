@@ -12,19 +12,17 @@
 
 #include "../../philo.h"
 
-static bool	fork_init(t_table *table)
+static void	fork_init(t_table *table)
 {
 	int	i;
 
 	i = 0;
 	while (i < table->philo_nbr)
 	{
-		if (0 != pthread_mutex_init(&table->forks[i].fork, NULL))
-			return (init_error_1(1), false);
+		pthread_mutex_init(&table->forks[i].fork, NULL);
 		table->forks[i].fork_id = i;
 		i++;
 	}
-	return (true);
 }
 
 static void	asign_forks(t_philosopher *philo, t_fork *forks, int i)
@@ -66,19 +64,15 @@ bool	data_init(t_table *table)
 {
 	table->end_dinner = false;
 	table->all_philos_ready = false;
-	if (0 != pthread_mutex_init(&table->table_mutex, NULL))
-		return (init_error_1(1), false);
-	if (0 != pthread_mutex_init(&table->write_mutex, NULL))
-		return (init_error_1(1), false);
+	pthread_mutex_init(&table->table_mutex, NULL);
+	pthread_mutex_init(&table->write_mutex, NULL);
 	table->philos = malloc(sizeof(t_philosopher) * table->philo_nbr);
 	if (NULL == table->philos)
 		return (false); // TODO: error mssg
 	table->forks = malloc(sizeof(t_fork) * table->philo_nbr);
 	if (NULL == table->forks)
 		return (false); // TODO: error mssg
-	if (false == fork_init(table))
-		return (false);
-	if (false == philos_init(table))
-		return (false);
+	fork_init(table);
+	philos_init(table);
 	return (true);
 }
