@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:58 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/25 20:55:57 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 09:56:19 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ long	ft_atol(char *arg);
 bool	data_init(t_table *table);
 
 // INFO: data_race safe read and change functions
-bool	change_bool(t_mutex *mutex, bool *to_change, bool value);
-bool	change_long(t_mutex *mutex, long *to_change, long value);
+void	change_bool(t_mutex *mutex, bool *to_change, bool value);
+void	change_long(t_mutex *mutex, long *to_change, long value);
 bool	read_bool(t_mutex *mutex, bool *value);
 long	read_long(t_mutex *mutex, long *value);
 

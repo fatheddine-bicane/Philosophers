@@ -6,36 +6,26 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:46:16 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/26 15:42:09 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 09:56:24 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../philo.h"
 
 // INFO: change boolean value to_change, avoiding data race
-bool	change_bool(t_mutex *mutex, bool *to_change, bool value)
+void	change_bool(t_mutex *mutex, bool *to_change, bool value)
 {
-	// if (0 != pthread_mutex_lock(mutex))
-	// 	return (false);
-	// *to_change = value;
-	// if (0 != pthread_mutex_unlock(mutex))
-	// 	return (false);
-	// return (true);
 	pthread_mutex_lock(mutex);
 	*to_change = value;
 	pthread_mutex_unlock(mutex);
-	return (true);
 }
 
 // INFO: change long value to_change, avoiding data race
-bool	change_long(t_mutex *mutex, long *to_change, long value)
+void	change_long(t_mutex *mutex, long *to_change, long value)
 {
-	if (0 != pthread_mutex_lock(mutex))
-		return (false);
+	pthread_mutex_lock(mutex);
 	*to_change = value;
-	if (0 != pthread_mutex_unlock(mutex))
-		return (false);
-	return (true);
+	pthread_mutex_unlock(mutex);
 }
 
 // INFO: read boolean value and avoid data race
