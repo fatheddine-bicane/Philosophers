@@ -23,7 +23,7 @@ void	create_philos(t_table *table)
 	{
 		philo_thread = &table->philos[i].thread;
 		philo = &table->philos[i];
-		pthread_create(philo_thread, NULL, dinner_routine, philo);
+		pthread_create(philo_thread, NULL, philo_routine, philo);
 		i++;
 	}
 }
