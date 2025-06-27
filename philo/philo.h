@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:58 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 18:35:25 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 18:59:11 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ struct s_table
 // INFO: error_printers
 void	parce_error_1(int error_mssg);
 void	init_error_1(int error_mssg);
-void	dinner_error_1(int	error_mssg);
-void	time_error_1(int error_mssg);
 
 // INFO: parcing functions
 bool	parce_args(int argc, char **argv, t_table *table);
