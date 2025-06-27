@@ -12,19 +12,20 @@
 
 #include "../../philo.h"
 
-bool	create_philos(t_table *table)
+void	create_philos(t_table *table)
 {
-	int	i;
+	t_philosopher	*philo;
+	pthread_t		*philo_thread;
+	int				i;
 
 	i = 0;
 	while (i < table->philo_nbr)
 	{
-		if (0 != pthread_create(&table->philos[i].thread,
-				NULL, dinner_routine, &table->philos[i]))
-				return (dinner_error_1(1), false);
+		philo_thread = &table->philos[i].thread;
+		philo = &table->philos[i];
+		pthread_create(philo_thread, NULL, dinner_routine, philo);
 		i++;
 	}
-	return (true);
 }
 
 bool	join_philos(t_table *table)
@@ -47,10 +48,7 @@ bool	dinner_simulation(t_table *table)
 	{
 		// TODO: edge case one philo will starve to death
 	}
-
-	if (false == create_philos(table))
-		return (false);
-
+	create_philos(table);
 	table->start_dinner = gettime();
 	change_bool(&table->table_mutex, &table->all_philos_ready, true);
 	join_philos(table);
