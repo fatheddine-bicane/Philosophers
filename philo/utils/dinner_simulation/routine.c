@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 20:52:39 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 10:03:04 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 16:40:45 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	eating(t_philosopher *philo)
 	pthread_mutex_unlock(&philo->second_fork->fork);
 }
 
-void	*dinner_routine(void *ptr)
+void	*philo_routine(void *ptr)
 {
 	t_philosopher	*philo;
 
