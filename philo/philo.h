@@ -119,6 +119,7 @@ bool	data_init(t_table *table);
 // INFO: data_race safe read and change functions
 void	change_bool(t_mutex *mutex, bool *to_change, bool value);
 void	change_long(t_mutex *mutex, long *to_change, long value);
+void	increment_long(t_mutex *mutex, long *to_increment);
 bool	read_bool(t_mutex *mutex, bool *value);
 long	read_long(t_mutex *mutex, long *value);
 

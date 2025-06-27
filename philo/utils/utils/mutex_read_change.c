@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 17:46:16 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 09:56:24 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 14:46:50 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ void	change_long(t_mutex *mutex, long *to_change, long value)
 {
 	pthread_mutex_lock(mutex);
 	*to_change = value;
+	pthread_mutex_unlock(mutex);
+}
+
+// INFO: increment long
+void	increment_long(t_mutex *mutex, long *to_increment)
+{
+	pthread_mutex_lock(mutex);
+	(*to_increment)++;
 	pthread_mutex_unlock(mutex);
 }
 
