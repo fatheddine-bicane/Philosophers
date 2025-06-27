@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 20:52:39 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 18:38:01 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 20:12:41 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ static void	eating(t_philosopher *philo)
 	print_status(TAKEN_A_FORK, philo);
 	// eat
 	change_long(&philo->philo_mutex, &philo->last_meal_time, gettime());
-
-	// WARN: not thread safe
 	philo->meals_counter++;
-
 	print_status(EATING, philo);
 	ft_sleep(philo->table->time_to_eat);
 	//check if philosopher is full
@@ -34,6 +31,26 @@ static void	eating(t_philosopher *philo)
 	// put forks on table
 	pthread_mutex_unlock(philo->first_fork);
 	pthread_mutex_unlock(philo->second_fork);
+}
+
+static void	thinking(t_philosopher *philo)
+{
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	time_to_think;
+
+	print_status(THINKING, philo);
+	if (0 == philo->table->philo_nbr % 2)
+		return ;
+	else
+	{
+		time_to_eat = read_long(&philo->table->table_mutex, &philo->table->time_to_eat);
+		time_to_sleep = read_long(&philo->table->table_mutex, &philo->table->time_to_sleep);
+		time_to_think = time_to_eat * 2 - time_to_sleep;
+		if (0 > time_to_think)
+			time_to_think = 0;
+		ft_sleep(time_to_think);
+	}
 }
 
 void	*philo_routine(void *ptr)
@@ -62,7 +79,7 @@ void	*philo_routine(void *ptr)
 		print_status(SLEEPING, philo);
 		ft_sleep(philo->table->time_to_sleep);
 		// think
-		print_status(THINKING, philo);
+		thinking(philo);
 	}
 	return (NULL);
 }
