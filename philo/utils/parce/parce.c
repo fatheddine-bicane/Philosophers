@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 18:26:52 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/21 18:54:01 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 17:48:06 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	parce_nbr_philos(t_table *table, char *arg)
 static bool	parce_philos_routine(t_table *table, char **argv)
 {
 	table->time_to_die = ft_atol(argv[2]);
-	if (0 >= table->time_to_sleep)
+	if (0 >= table->time_to_die)
 		return (parce_error_1(5), false);
 	/*table->time_to_die *= 1e3;*/
 	table->time_to_eat = ft_atol(argv[3]);
