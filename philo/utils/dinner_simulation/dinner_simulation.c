@@ -49,8 +49,10 @@ void	dinner_simulation(t_table *table)
 		// TODO: edge case one philo will starve to death
 	}
 	create_philos(table);
+	pthread_create(&table->butler, NULL, butler_service, table);
 	table->start_dinner = gettime();
 	change_bool(&table->table_mutex, &table->all_philos_ready, true);
 	join_philos(table);
+	pthread_join(table->butler, NULL);
 	// if we reach this line all philosophers are full
 }

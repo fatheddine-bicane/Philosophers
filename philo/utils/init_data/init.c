@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 20:45:35 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/25 20:57:28 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 18:12:52 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ bool	data_init(t_table *table)
 	table->forks = malloc(sizeof(t_fork) * table->philo_nbr);
 	if (NULL == table->forks)
 		return (false); // TODO: error mssg
+	table->nbr_of_philos_dining = 0;
 	fork_init(table);
 	philos_init(table);
 	return (true);

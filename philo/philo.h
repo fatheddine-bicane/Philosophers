@@ -97,6 +97,8 @@ struct s_table
 	bool			all_philos_ready; // to synchronize (all philos (threads) start at the same time)
 	t_mutex			table_mutex; // avoid data race while reading frome table
 	t_mutex			write_mutex; // avoid data_race while writing the status
+	long			nbr_of_philos_dining; // number of philos that stated dining
+	pthread_t		butler; // this will check for dead philos
 	t_fork			*forks; //array of forks
 	t_philosopher	*philos; // array of philosophers
 };
@@ -138,6 +140,7 @@ void	print_status(t_philo_stat stat, t_philosopher *philo);
 // INFO: dinner simulation function
 void	*philo_routine(void *ptr);
 void	dinner_simulation(t_table *table);
+void	*butler_service(void *ptr);
 /*-----------------------------------------------*/
 
 #endif
