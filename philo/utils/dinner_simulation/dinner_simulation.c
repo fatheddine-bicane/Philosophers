@@ -52,14 +52,8 @@ bool	dinner_simulation(t_table *table)
 		return (false);
 
 	table->start_dinner = gettime();
-	if (-1 == table->start_dinner)
-		return (false);
-
 	change_bool(&table->table_mutex, &table->all_philos_ready, true);
-
 	join_philos(table);
 	// if we reach this line all philosophers are full
-
-
 	return (true);
 }

@@ -16,8 +16,7 @@ long	gettime(void)
 {
 	struct timeval	tv;
 
-	if (0 != gettimeofday(&tv, NULL))
-		return (time_error_1(1), -1);
+	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
 }
 
