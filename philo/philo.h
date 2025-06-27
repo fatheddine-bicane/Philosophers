@@ -136,7 +136,7 @@ void	print_status(t_philo_stat stat, t_philosopher *philo);
 
 // INFO: dinner simulation function
 void	*dinner_routine(void *ptr);
-bool	dinner_simulation(t_table *table);
+void	dinner_simulation(t_table *table);
 /*-----------------------------------------------*/
 
 #endif

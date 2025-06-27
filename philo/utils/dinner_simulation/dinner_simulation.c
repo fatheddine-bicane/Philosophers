@@ -42,7 +42,7 @@ bool	join_philos(t_table *table)
 	return (true);
 }
 
-bool	dinner_simulation(t_table *table)
+void	dinner_simulation(t_table *table)
 {
 	if (1 == table->limit_meals)
 	{
@@ -53,5 +53,4 @@ bool	dinner_simulation(t_table *table)
 	change_bool(&table->table_mutex, &table->all_philos_ready, true);
 	join_philos(table);
 	// if we reach this line all philosophers are full
-	return (true);
 }
