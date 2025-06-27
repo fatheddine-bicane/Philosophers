@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:10:27 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/25 12:41:45 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 18:58:13 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,6 @@ void	init_error_1(int error_mssg)
 {
 	if (1 == error_mssg)
 	{
-		printf(RED"Error: pthread_mutex_init failed.\n"RESET);
-	}
-}
-
-void	dinner_error_1(int error_mssg)
-{
-	if (1 == error_mssg)
-	{
-		printf(RED"Error: pthread_create failed.\n"RESET);
-	}
-}
-
-void	time_error_1(int error_mssg)
-{
-	if (1 == error_mssg)
-	{
-		printf(RED"Error: gettimeofday() failed.\n"RESET);
+		printf(RED"Error: Malloc() failed\n"RESET);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 20:45:35 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 18:53:08 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/27 18:57:31 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ bool	data_init(t_table *table)
 	pthread_mutex_init(&table->write_mutex, NULL);
 	table->philos = malloc(sizeof(t_philosopher) * table->philo_nbr);
 	if (NULL == table->philos)
-		return (false); // TODO: error mssg
+		return (init_error_1(1), false);
 	table->forks = malloc(sizeof(t_mutex) * table->philo_nbr);
 	if (NULL == table->forks)
-		return (false); // TODO: error mssg
+		return (init_error_1(1), false);
 	table->nbr_of_philos_dining = 0;
 	fork_init(table);
 	philos_init(table);
