@@ -28,18 +28,16 @@ void	create_philos(t_table *table)
 	}
 }
 
-bool	join_philos(t_table *table)
+static void	join_philos(t_table *table)
 {
 	int	i;
 
 	i = 0;
 	while (i < table->philo_nbr)
 	{
-		if (0 != pthread_join(table->philos[i].thread, NULL))
-			return (false);
+		pthread_join(table->philos[i].thread, NULL);
 		i++;
 	}
-	return (true);
 }
 
 void	dinner_simulation(t_table *table)
