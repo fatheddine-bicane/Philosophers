@@ -121,7 +121,7 @@ void	wait_philos(t_table *table);
 
 // INFO: time functions
 long	gettime(void);
-void	ft_sleep(long milliseconds);
+void	ft_sleep(long milliseconds, t_philosopher *philo);
 
 // INFO: print status function
 void	print_status(t_philo_stat stat, t_philosopher *philo);

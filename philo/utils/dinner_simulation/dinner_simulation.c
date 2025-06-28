@@ -46,8 +46,9 @@ void	dinner_simulation(t_table *table)
 {
 	if (1 == table->philo_nbr)
 	{
+		// TODO: create thread
 		printf(YELLOW"%-6d"BLUE" 1"RESET " has taken a fork\n", 0);
-		ft_sleep(table->time_to_die);
+		// ft_sleep(table->time_to_die);
 		printf(YELLOW"%-6ld" BLUE" 1" RED" died\n"RESET, table->time_to_die);
 		return;
 	}

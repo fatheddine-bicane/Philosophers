@@ -21,11 +21,19 @@ long	gettime(void)
 }
 
 // INFO: a precise sleep function
-void	ft_sleep(long milliseconds)
+void	ft_sleep(long milliseconds, t_philosopher *philo)
 {
 	long	start;
+	(void)philo;
 
 	start = gettime();
 	while ((gettime() - start) < milliseconds)
-		usleep(500);
+	{
+		// TODO: keep checking against end_dinner
+		if (false == read_bool(&philo->table->table_mutex,
+			&philo->table->end_dinner))
+			usleep(10);
+		else
+			return ;
+	}
 }

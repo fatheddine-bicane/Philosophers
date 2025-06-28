@@ -23,7 +23,7 @@ static void	eating(t_philosopher *philo)
 	change_long(&philo->philo_mutex, &philo->last_meal_time, gettime());
 	philo->meals_counter++;
 	print_status(EATING, philo);
-	ft_sleep(philo->table->time_to_eat);
+	ft_sleep(philo->table->time_to_eat, philo);
 	//check if philosopher is full
 	if (philo->table->limit_meals > 0
 		&& philo->meals_counter == philo->table->limit_meals)
@@ -49,7 +49,7 @@ static void	thinking(t_philosopher *philo)
 		time_to_think = time_to_eat * 2 - time_to_sleep;
 		if (0 > time_to_think)
 			time_to_think = 0;
-		ft_sleep(time_to_think);
+		ft_sleep(time_to_think, philo);
 	}
 }
 
@@ -77,7 +77,7 @@ void	*philo_routine(void *ptr)
 		eating(philo);
 		// sleep
 		print_status(SLEEPING, philo);
-		ft_sleep(philo->table->time_to_sleep);
+		ft_sleep(philo->table->time_to_sleep, philo);
 		// think
 		thinking(philo);
 	}
