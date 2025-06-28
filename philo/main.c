@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 15:10:55 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/28 21:58:45 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/28 22:08:56 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		printf("sir fhalk\n");
+		parce_error_1(7);
 	}
 }
