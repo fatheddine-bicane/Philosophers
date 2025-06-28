@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 20:45:35 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 18:57:31 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/28 21:59:28 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ static bool	philos_init(t_table *table)
 
 bool	data_init(t_table *table)
 {
+	table->forks = NULL;
+	table->philos = NULL;
 	table->end_dinner = false;
 	table->all_philos_ready = false;
 	pthread_mutex_init(&table->table_mutex, NULL);
