@@ -24,20 +24,32 @@ static void	fork_init(t_table *table)
 	}
 }
 
-static void	asign_forks(t_philosopher *philo, int i)
+static void	asign_forks(t_philosopher *philo, int i, long philo_nbr)
 {
 	t_mutex *forks;
 
 	forks = philo->table->forks;
 	if (0 == philo->id % 2)
 	{
+		if (philo->id == philo_nbr)
+		{
+			philo->first_fork = &forks[i];
+			philo->second_fork = &forks[0];
+			return ;
+		}
 		philo->first_fork = &forks[i];
-		philo->second_fork = &forks[(i + 1) % philo->table->philo_nbr];
+		philo->second_fork = &forks[philo->id];
 	}
 	else
 	{
+		if (philo->id == philo_nbr)
+		{
+			philo->first_fork = &forks[0];
+			philo->second_fork = &forks[i];
+			return ;
+		}
+		philo->first_fork = &forks[philo->id];
 		philo->second_fork = &forks[i];
-		philo->first_fork = &forks[(i + 1) % philo->table->philo_nbr];
 	}
 }
 
@@ -49,7 +61,7 @@ static bool	philos_init(t_table *table)
 	i = 0;
 	while (i < table->philo_nbr)
 	{
-		philo = table->philos + i; // access each philo in the array one by one
+		philo = &table->philos[i]; // access each philo in the array one by one
 		philo->died = false;
 		philo->full = false;
 		philo->id = i + 1;
@@ -57,7 +69,7 @@ static bool	philos_init(t_table *table)
 		philo->last_meal_time = 0;
 		pthread_mutex_init(&philo->philo_mutex, NULL);
 		philo->table = table;
-		asign_forks(philo, i);
+		asign_forks(philo, i, table->philo_nbr);
 		i++;
 	}
 	return (true);
