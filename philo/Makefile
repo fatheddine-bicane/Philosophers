@@ -1,4 +1,5 @@
 CC = cc
+# FLAGS = -Wall -Wextra -Werror -g -O2 -fsanitize=thread -pthread
 FLAGS = -Wall -Wextra -Werror -pthread -g
 NAME = philo
 BNAME = philo_bonus
