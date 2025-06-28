@@ -130,6 +130,7 @@ void	print_status(t_philo_stat stat, t_philosopher *philo);
 void	*philo_routine(void *ptr);
 void	dinner_simulation(t_table *table);
 void	*butler_service(void *ptr);
+void	one_philo(t_table *table);
 /*-----------------------------------------------*/
 
 #endif
