@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:10:27 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/28 22:11:54 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/28 22:15:37 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	parce_error_2(int error_mssg)
 	if (7 == error_mssg)
 	{
 		printf(RED"Error: Invalid number of arguments, arguments");
-		printf("must be 5 or 6.\nUsage: ./philo number_of_philosophers");
-		printf (" time_to_die time_to_eat time_to_sleep [number_of_time");
-		printf("s_each_philosopher_must_eat]\n"RESET);
+		printf("must be 5 or 6.\n"RESET YELLOW"Usage: ./philo n_philos");
+		printf (" time_to_die time_to_eat time_to_sleep [n_of_time");
+		printf("s_philos_must_eat]\n"RESET);
 	}
 }
 
