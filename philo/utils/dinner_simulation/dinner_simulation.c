@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 16:55:23 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 20:23:05 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/28 11:08:55 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	dinner_simulation(t_table *table)
 	table->start_dinner = gettime();
 	change_bool(&table->table_mutex, &table->all_philos_ready, true);
 	join_philos(table);
-	// pthread_join(table->butler, NULL);
+	pthread_join(table->butler, NULL);
 	// if we reach this line all philosophers are full
 }

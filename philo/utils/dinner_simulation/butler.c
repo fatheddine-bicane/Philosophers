@@ -6,7 +6,7 @@
 /*   By: fbicane <fbicane@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 12:02:41 by fbicane           #+#    #+#             */
-/*   Updated: 2025/06/27 18:15:18 by fbicane          ###   ########.fr       */
+/*   Updated: 2025/06/28 11:08:47 by fbicane          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,24 @@ static bool	is_philo_dead(t_philosopher *philo)
 	return (false);
 }
 
+static bool	are_philos_full(t_table *table)
+{
+	int	i;
+	int	nbr_philos_full;
+
+	i = 0;
+	nbr_philos_full = 0;
+	while (i < table->philo_nbr)
+	{
+		if (true == read_bool(&table->philos[i].philo_mutex, &table->philos[i].full))
+			nbr_philos_full++;
+		i++;
+	}
+	if (nbr_philos_full == i)
+		return (true);
+	return (false);
+}
+
 void	*butler_service(void *ptr)
 {
 	t_table	*table;
@@ -53,6 +71,8 @@ void	*butler_service(void *ptr)
 		//check every philosopher in the table if he died
 		while (i < table->philo_nbr && false == end_dinner(table))
 		{
+			if (true == are_philos_full(table))
+				return (NULL);
 			if (true == is_philo_dead(table->philos + i))
 			{
 				change_bool(&table->table_mutex, &table->end_dinner, true);
