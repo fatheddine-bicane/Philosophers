@@ -14,11 +14,8 @@ RED = \033[0;31m
 RESET = \033[0m
 
 
-SRCS =	$(shell ls ./utils/dinner_simulation/*.c) \
-		$(shell ls ./utils/error/*.c) \
-		$(shell ls ./utils/init_data/*.c) \
+SRCS =	$(shell ls ./utils/error/*.c) \
 		$(shell ls ./utils/parce/*.c) \
-		$(shell ls ./utils/utils/*.c) \
 		./main.c \
 
 OFILES = $(SRCS:.c=.o)
