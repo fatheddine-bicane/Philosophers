@@ -55,5 +55,5 @@ void	dinner_simulation(t_table *table)
 	// join all philos
 	join_philos(table);
 	pthread_join(table->butler, NULL);
-	// if we reach this line all philosophers are full
+	// all philosophers are full
 }

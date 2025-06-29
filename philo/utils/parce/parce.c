@@ -27,15 +27,12 @@ static bool	parce_philos_routine(t_table *table, char **argv)
 	table->time_to_die = ft_atol(argv[2]);
 	if (0 >= table->time_to_die)
 		return (parce_error_1(5), false);
-	/*table->time_to_die *= 1e3;*/
 	table->time_to_eat = ft_atol(argv[3]);
 	if (0 >= table->time_to_eat)
 		return (parce_error_1(5), false);
-	/*table->time_to_eat *= 1e3;*/
 	table->time_to_sleep = ft_atol(argv[4]);
 	if (0 >= table->time_to_sleep)
 		return (parce_error_1(5), false);
-	/*table->time_to_sleep *= 1e3;*/
 	return (true);
 }
 

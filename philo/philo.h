@@ -70,7 +70,6 @@ typedef struct s_philosopher
 	t_mutex		philo_mutex; // avoid data race with the monitor
 	t_table		*table; // pointer to the table (access data)
 	pthread_t	thread; // the philosopher (thread)
-
 }	t_philosopher;
 
 // INFO: table struct (user input)
@@ -84,11 +83,11 @@ struct s_table
 	long			time_to_sleep;
 	long			limit_meals; // [5] optional argument
 	long			start_dinner; // at what time the dinner started
-	bool			end_dinner; // when a philosopher dies or all of them are full
-	bool			all_philos_ready; // to synchronize (all philos (threads) start at the same time)
-	t_mutex			table_mutex; // avoid data race while reading frome table
-	t_mutex			write_mutex; // avoid data_race while writing the status
-	long			nbr_of_philos_dining; // number of philos that stated dining
+	bool			end_dinner; // if a philo dies or all philos are full
+	bool			all_philos_ready; // to sync all philos
+	t_mutex			table_mutex; // avoid data_race if reading from table
+	t_mutex			write_mutex; // avoid data_race if writing the status
+	long			nbr_of_philos_dining; // number of philos started dining
 	pthread_t		butler; // this will check for dead philos
 	t_mutex			*forks; //array of forks
 	t_philosopher	*philos; // array of philosophers

@@ -44,8 +44,10 @@ static void	thinking(t_philosopher *philo)
 		return ;
 	else
 	{
-		time_to_eat = read_long(&philo->table->table_mutex, &philo->table->time_to_eat);
-		time_to_sleep = read_long(&philo->table->table_mutex, &philo->table->time_to_sleep);
+		time_to_eat = read_long(&philo->table->table_mutex,
+				&philo->table->time_to_eat);
+		time_to_sleep = read_long(&philo->table->table_mutex,
+				&philo->table->time_to_sleep);
 		time_to_think = time_to_eat * 2 - time_to_sleep;
 		if (0 > time_to_think)
 			time_to_think = 0;
@@ -66,7 +68,6 @@ void	*philo_routine(void *ptr)
 	// untet all philos are ready (nbr_of_philos_runing == philo_nbr)
 	increment_long(&philo->table->table_mutex,
 		&philo->table->nbr_of_philos_dining);
-
 	// the routine start, stops if the flag setted to false
 	while (false == end_dinner(philo->table))
 	{

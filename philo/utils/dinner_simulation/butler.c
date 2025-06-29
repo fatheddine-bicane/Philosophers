@@ -12,7 +12,8 @@
 
 #include "../../philo.h"
 
-static bool all_philos_dining(t_mutex *mutex, long *philos_dining, long philos_nbr)
+static bool	all_philos_dining(t_mutex *mutex,
+		long *philos_dining, long philos_nbr)
 {
 	bool	result;
 
@@ -31,9 +32,9 @@ static bool	is_philo_dead(t_philosopher *philo)
 
 	if (true == read_bool(&philo->philo_mutex, &philo->full))
 		return (false);
-	last_meal = gettime() - read_long(&philo->philo_mutex, &philo->last_meal_time);
-	time_to_die = read_long(&philo->table->table_mutex, &philo->table->time_to_die);
-	// time_to_die = philo->table->time_to_die;
+	last_meal = gettime() - read_long(&philo->philo_mutex,
+			&philo->last_meal_time);
+	time_to_die = philo->table->time_to_die;
 	if (last_meal > time_to_die)
 		return (true);
 	return (false);
@@ -48,7 +49,8 @@ static bool	are_philos_full(t_table *table)
 	nbr_philos_full = 0;
 	while (i < table->philo_nbr)
 	{
-		if (true == read_bool(&table->philos[i].philo_mutex, &table->philos[i].full))
+		if (true == read_bool(&table->philos[i].philo_mutex,
+				&table->philos[i].full))
 			nbr_philos_full++;
 		i++;
 	}
@@ -63,7 +65,8 @@ void	*butler_service(void *ptr)
 	int		i;
 
 	table = (t_table *)ptr;
-	while (false == all_philos_dining(&table->table_mutex, &table->nbr_of_philos_dining, table->philo_nbr))
+	while (false == all_philos_dining(&table->table_mutex,
+			&table->nbr_of_philos_dining, table->philo_nbr))
 		;
 	while (false == end_dinner(table))
 	{
@@ -83,4 +86,3 @@ void	*butler_service(void *ptr)
 	}
 	return (NULL);
 }
-

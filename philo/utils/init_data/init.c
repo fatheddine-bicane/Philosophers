@@ -26,7 +26,7 @@ static void	fork_init(t_table *table)
 
 static void	asign_forks(t_philosopher *philo, int i, long philo_nbr)
 {
-	t_mutex *forks;
+	t_mutex	*forks;
 
 	forks = philo->table->forks;
 	if (0 == philo->id % 2)
@@ -53,10 +53,10 @@ static void	asign_forks(t_philosopher *philo, int i, long philo_nbr)
 	}
 }
 
-static bool	philos_init(t_table *table)
+static void	philos_init(t_table *table)
 {
-	int	i;
 	t_philosopher	*philo;
+	int				i;
 
 	i = 0;
 	while (i < table->philo_nbr)
@@ -72,7 +72,6 @@ static bool	philos_init(t_table *table)
 		asign_forks(philo, i, table->philo_nbr);
 		i++;
 	}
-	return (true);
 }
 
 bool	data_init(t_table *table)

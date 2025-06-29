@@ -35,5 +35,6 @@ int	main(int argc, char **argv)
 	else
 	{
 		parce_error_2(7);
+		return (EXIT_FAILURE);
 	}
 }
