@@ -2,7 +2,6 @@ CC = cc
 # FLAGS = -Wall -Wextra -Werror -g -O2 -fsanitize=thread -pthread
 FLAGS = -Wall -Wextra -Werror -pthread -g
 NAME = philo
-BNAME = philo_bonus
 
 
 
@@ -23,11 +22,8 @@ SRCS =	$(shell ls ./utils/dinner_simulation/*.c) \
 		$(shell ls ./utils/utils/*.c) \
 		./main.c \
 
-BONUS = 
-
 
 OFILES = $(SRCS:.c=.o)
-BOFILES = $(BONUS:.c=.o)
 
 all: $(NAME)
 
@@ -39,13 +35,6 @@ $(NAME): $(OFILES)
 	@$(CC) $(FLAGS) $(OFILES) -o $(NAME)
 	@echo "$(GREEN)philo compiled successfully!$(RESET)"
 
-bonus: $(BNAME)
-
-$(BNAME): $(BOFILES)
-	@rm -f $(NAME)
-	@$(CC) $(FLAGS) $(BOFILES) -o $(BNAME)
-	@echo "$(GREEN)philo bonus compiled successfully!$(RESET)"
-
 clean:
 	@rm -f $(OFILES) $(BOFILES)
 	@echo "$(YELLOW)Cleaning object files$(RESET)"
@@ -56,6 +45,4 @@ fclean: clean
 
 re: fclean all
 
-re_bonus : fclean bonus
-
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
