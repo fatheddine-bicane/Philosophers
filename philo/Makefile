@@ -1,4 +1,5 @@
 CC = cc
+# FLAGS = -Wall -Wextra -Werror -g -O2 -fsanitize=thread -pthread
 FLAGS = -Wall -Wextra -Werror -pthread -g
 NAME = philo
 BNAME = philo_bonus
@@ -15,7 +16,12 @@ RED = \033[0;31m
 RESET = \033[0m
 
 
-SRCS = ./main.c ./utils/error/throw_error.c ./utils/parce/parce.c ./utils/parce/parce_utils.c
+SRCS =	$(shell ls ./utils/dinner_simulation/*.c) \
+		$(shell ls ./utils/error/*.c) \
+		$(shell ls ./utils/init_data/*.c) \
+		$(shell ls ./utils/parce/*.c) \
+		$(shell ls ./utils/utils/*.c) \
+		./main.c \
 
 BONUS = 
 

@@ -49,4 +49,3 @@ long	ft_atol(char *arg)
 		return (parce_error_1(2), -1);
 	return ((int)res);
 }
-
