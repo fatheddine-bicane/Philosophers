@@ -1,8 +1,7 @@
 CC = cc
 # FLAGS = -Wall -Wextra -Werror -g -O2 -fsanitize=thread -pthread
 FLAGS = -Wall -Wextra -Werror -pthread -g
-NAME = philo
-
+NAME = philo_bonus
 
 
 #colors
@@ -22,7 +21,6 @@ SRCS =	$(shell ls ./utils/dinner_simulation/*.c) \
 		$(shell ls ./utils/utils/*.c) \
 		./main.c \
 
-
 OFILES = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -32,7 +30,7 @@ all: $(NAME)
 
 $(NAME): $(OFILES)
 	@$(CC) $(FLAGS) $(OFILES) -o $(NAME)
-	@echo "$(GREEN)philo compiled successfully!$(RESET)"
+	@echo "$(GREEN)philo bonus compiled successfully!$(RESET)"
 
 clean:
 	@rm -f $(OFILES)
